@@ -6,6 +6,7 @@ const catalogo = require('../models/catalogue')
 router.get('/', function(req, res, next) {
   // catalogo.createCollection();
   catalogo.find({},(err,catalogue) =>{
+    console.log(catalogue)
     res.status(200).send({
       message:"ok",
       product:catalogue
