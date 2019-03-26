@@ -1,12 +1,16 @@
-let express = require('express');
-let router = express.Router();
+const express = require('express');
+const router = express.Router();
+const catalogo = require('../models/catalogue') 
 
 /*Lista catalogo */
 router.get('/', function(req, res, next) {
-  res.status(200).send({
-    message:"ok",
-    product:[]
-  });
+  catalogo.find({},(catalogue) =>{
+    res.status(200).send({
+      message:"ok",
+      product:catalogue
+    });
+  })
+ 
 });
 
 /*Lista catalogo con filtro */

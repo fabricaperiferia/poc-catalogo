@@ -4,28 +4,30 @@ let express = require('express');
 let path = require('path');
 let logger = require('morgan');
 
-let mongoose = require('mongoose');
-let bodyParser = require('body-parser');
-let indexRouter = require('./routes/index');
-let catalogueRouter = require('./routes/catalogue');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const indexRouter = require('./routes/index');
+const catalogueRouter = require('./routes/catalogue');
 
 let app = express();
 
 //Body parser
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 //conectDB
-mongoose.connect('mongodb://localhost/poc-catalogo',(err ,response)=>{
-if(err) {
-  return console.log('Error al conectar con la base de datos',err)
-}
-console.log('connect BD')
+mongoose.connect('mongodb://localhost/poc-catalogo', (err, response) => {
+  if (err) {
+    return console.log('Error al conectar con la base de datos', err)
+  }
+  let db = mongoose.connection;
+  // console.log(db.collections)
+// db.createCollection("catalogo", {strict:true}, function(error, collection){
+//   console.log(error,collection)
+// })
 });
 
-let db = mongoose.connection;
-
-// Vista de cambios
+// Vista de cambio
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
@@ -40,11 +42,11 @@ app.use('/', indexRouter);
 app.use('/catalogue', catalogueRouter);
 
 // Error 404
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
