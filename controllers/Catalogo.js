@@ -13,8 +13,10 @@ module.exports.catalogueGET = function catalogueGET (req, res, next) {
 };
 
 module.exports.getPetById = function getPetById (req, res, next) {
-  console.log(req.params.filter)
-  catalogo.find({nombre:{$regex:req.params.filter}},(err,catalogue) =>{
+  let valueFilter = req.swagger.params['filter'].value;
+  console.log(valueFilter)
+  catalogo.find({nombre:{$regex:valueFilter}},(err,catalogue) =>{
+    console.log(catalogue)
     res.status(200).send({
       message:"ok",
       product:catalogue

@@ -8,7 +8,7 @@ var app = require('express')();
 var swaggerTools = require('swagger-tools');
 var jsyaml = require('js-yaml');
 const mongoose = require('mongoose');
-var serverPort = 8080;
+var serverPort = 3000;
 
 
 //conectDB
