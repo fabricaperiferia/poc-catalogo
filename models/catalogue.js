@@ -7,5 +7,7 @@ const catalogo= Schema({
     precio:String,
     presentacion:String,
     categoria:String,
+    descripción:String,
+    imagen:String,
    })
 module.exports = mongoose.model('catalogo', catalogo)
