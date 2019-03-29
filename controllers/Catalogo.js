@@ -1,7 +1,8 @@
 'use strict';
 
-var utils = require('../utils/writer.js');
 var catalogo = require('../models/catalogue');
+var jose = require('node-jose');
+
 
 //Retorna el catálogo completo de la aplicación 
 module.exports.catalogueGET = function catalogueGET (req, res, next) {
