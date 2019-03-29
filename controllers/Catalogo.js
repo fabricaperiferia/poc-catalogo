@@ -19,9 +19,17 @@ module.exports.getCatalogueByFilter = function getCatalogueByFilter(req, res, ne
   let valueFilter = req.swagger.params['filter'].value;
    catalogo.find({$or:[{nombre:{$regex:valueFilter,$options: 'i'}},{presentacion:{$regex:valueFilter,$options: 'i'}},
   {categoria:{$regex:valueFilter,$options: 'i'}}]}, (err,catalogue) =>{
+    if (catalogue.length === 0 ){
     res.status(200).send({
       message:"ok",
       product:catalogue
     });
+  }
+  else {
+    res.status(201).send({
+      message:"No se encuentra parametros para este filtro",
+      product:catalogue
+    });
+  }
   })
 };
