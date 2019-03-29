@@ -1,0 +1,66 @@
+
+swagger: "2.0"
+info:
+  description: "Proyecto base para el poc de grupo aval. Se encuentra swagger de catá\
+    logo"
+  version: "1.0.0"
+  title: "Poc catálogo"
+host: "localhost:8080"
+tags:
+- name: "Catalogo"
+  description: "Manejo del catálogo del usuario"
+schemes:
+- "http"
+paths:
+  /catalogue:
+    get:
+      tags:
+      - "Catalogo"
+      summary: "Listar catálogo de la aplicación"
+      operationId: "catalogueGET"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        401:
+          description: "Error al procesar la petición"
+      x-swagger-router-controller: "Catalogo"
+  /catalogue/{filter}:
+    get:
+      tags:
+      - "Catalogo"
+      summary: "Listar catálogo por filtro"
+      description: "Returns a single pet"
+      operationId: "getPetById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "filter"
+        in: "path"
+        description: "Valor por el cual se realizara el respectivo filtro"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+        400:
+          description: "Proceso invalido"
+      security:
+      - api_key: []
+      x-swagger-router-controller: "Catalogo"
+securityDefinitions:
+  petstore_auth:
+    type: "oauth2"
+    authorizationUrl: "http://petstore.swagger.io/oauth/dialog"
+    flow: "implicit"
+    scopes:
+      write:pets: "modify pets in your account"
+      read:pets: "read your pets"
+  api_key:
+    type: "apiKey"
+    name: "api_key"
+    in: "header"
+definitions: {}
