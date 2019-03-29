@@ -33,7 +33,7 @@ paths:
       - "Catalogo"
       summary: "Listar catálogo por filtro"
       description: "Returns a single pet"
-      operationId: "getPetById"
+      operationId: "getCatalogueByFilter"
       produces:
       - "application/xml"
       - "application/json"

@@ -3,6 +3,7 @@
 var utils = require('../utils/writer.js');
 var catalogo = require('../models/catalogue');
 
+//Retorna el catálogo completo de la aplicación 
 module.exports.catalogueGET = function catalogueGET (req, res, next) {
   catalogo.find({},(err,catalogue) =>{
     res.status(200).send({
@@ -11,11 +12,14 @@ module.exports.catalogueGET = function catalogueGET (req, res, next) {
     });
   })
 };
-
-module.exports.getPetById = function getPetById (req, res, next) {
+/**
+ * Lista catálogo de la aplicación según el respectivo filtro
+ **/
+module.exports.getCatalogueByFilter = function getCatalogueByFilter(req, res, next) {
   let valueFilter = req.swagger.params['filter'].value;
   console.log(valueFilter)
-  catalogo.find({nombre:{$regex:valueFilter}},(err,catalogue) =>{
+  catalogo.find({$or:[{nombre:{$regex:valueFilter,$options: 'i'}},{presentacion:{$regex:valueFilter,$options: 'i'}},
+  {categoria:{$regex:valueFilter,$options: 'i'}}]}, (err,catalogue) =>{
     console.log(catalogue)
     res.status(200).send({
       message:"ok",
