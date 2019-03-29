@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "test":"mocha"
+
   },
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -13,6 +15,7 @@
     "jade": "~1.11.0",
     "js-yaml": "^3.13.0",
     "mongoose": "^5.4.20",
+    "supertest": "^4.0.2",
     "swagger-tools": "^0.10.4",
     "swagger-ui-express": "^4.0.2"
   },

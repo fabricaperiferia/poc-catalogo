@@ -17,10 +17,8 @@ module.exports.catalogueGET = function catalogueGET (req, res, next) {
  **/
 module.exports.getCatalogueByFilter = function getCatalogueByFilter(req, res, next) {
   let valueFilter = req.swagger.params['filter'].value;
-  console.log(valueFilter)
-  catalogo.find({$or:[{nombre:{$regex:valueFilter,$options: 'i'}},{presentacion:{$regex:valueFilter,$options: 'i'}},
+   catalogo.find({$or:[{nombre:{$regex:valueFilter,$options: 'i'}},{presentacion:{$regex:valueFilter,$options: 'i'}},
   {categoria:{$regex:valueFilter,$options: 'i'}}]}, (err,catalogue) =>{
-    console.log(catalogue)
     res.status(200).send({
       message:"ok",
       product:catalogue
