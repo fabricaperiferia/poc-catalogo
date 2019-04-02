@@ -20,7 +20,6 @@ mongoose.connect(`mongodb://${process.env.userDB}:${process.env.passwordDB}@debi
   if (err) {
     return console.log('Error al conectar con la base de datos', err)
   }
-  console.log(response)
   console.log("Se conecto correctamente a la base de datos")
 });
 
