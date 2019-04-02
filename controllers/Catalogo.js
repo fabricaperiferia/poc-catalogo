@@ -7,6 +7,7 @@ var jose = require('node-jose');
 //Retorna el catálogo completo de la aplicación 
 module.exports.catalogueGET = function catalogueGET (req, res, next) {
   catalogo.find({},(err,catalogue) =>{
+    console.log(catalogue)
     res.status(200).send({
       message:"ok",
       product:catalogue

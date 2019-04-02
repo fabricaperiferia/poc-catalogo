@@ -8,19 +8,20 @@ var app = require('express')();
 var swaggerTools = require('swagger-tools');
 var jsyaml = require('js-yaml');
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 var serverPort = 3000;
 
 
+dotenv.config();
+
 //conectDB
-mongoose.connect('mongodb://localhost/poc-catalogo', (err, response) => {
+mongoose.connect(`mongodb://${process.env.userDB}:${process.env.passwordDB}@debianci.eastus.cloudapp.azure.com/poc-catalogo`
+, (err, response) => {
   if (err) {
     return console.log('Error al conectar con la base de datos', err)
   }
-  let db = mongoose.connection;
-  // console.log(db.collections)
-// db.createCollection("catalogo", {strict:true}, function(error, collection){
-//   console.log(error,collection)
-// })
+  console.log(response)
+  console.log("Se conecto correctamente a la base de datos")
 });
 
 // swaggerRouter configuration
@@ -52,8 +53,8 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
   app.use(middleware.swaggerUi());
 
    http.createServer(app).listen(serverPort, function () {
-    console.log('Your server is listening on port %d (http://localhost:%d)', serverPort, serverPort);
-    console.log('Swagger-ui is available on http://localhost:%d/docs', serverPort);
+    console.log('El servidor está corriendo por el puerto %d (http://localhost:%d)', serverPort, serverPort);
+    console.log('Swagger-ui está corriendo de la siguiente forma  http://localhost:%d/docs', serverPort);
   });
 
 });
