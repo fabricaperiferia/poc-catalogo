@@ -4,7 +4,9 @@ var catalogo = require('../models/catalogue');
 var jose = require('node-jose');
 
 
-//Retorna el catálogo completo de la aplicación 
+/** 
+ @description Retorna el catálogo completo de la aplicación 
+**/
 module.exports.catalogueGET = function catalogueGET (req, res, next) {
   catalogo.find({},(err,catalogue) =>{
    res.status(200).send({
@@ -13,8 +15,10 @@ module.exports.catalogueGET = function catalogueGET (req, res, next) {
     });
   })
 };
+
+
 /**
- * Lista catálogo de la aplicación según el respectivo filtro
+ @description Lista catálogo de la aplicación según el respectivo filtro
  **/
 module.exports.getCatalogueByFilter = function getCatalogueByFilter(req, res, next) {
   let valueFilter = req.swagger.params['filter'].value;
