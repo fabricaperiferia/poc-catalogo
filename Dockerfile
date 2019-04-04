@@ -6,7 +6,12 @@ WORKDIR /home/node/app
 
 COPY . .
 
+#RUN npm install -g nodemon
+
 USER node
+
+RUN npm i mocha
+RUN npm test
 
 RUN npm install
 
