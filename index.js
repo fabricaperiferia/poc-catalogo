@@ -16,21 +16,20 @@ dotenv.config();
 
 //conectDB
 mongoose.connect(`mongodb://${process.env.userDB}:${process.env.passwordDB}@debianci.eastus.cloudapp.azure.com/poc-catalogo`
-, (err, response) => {
-  if (err) {
-    return console.log('Error al conectar con la base de datos', err)
-  }
-  console.log("Se conecto correctamente a la base de datos")
-});
+,{ useNewUrlParser: true }).then(response => {
+console.log("Se conecto correctamente a la base de datos")
+}).catch(err => 
+  console.log("error en la conexión ",err)
+  )
 
 // swaggerRouter configuration
 var options = {
   swaggerUi: path.join(__dirname, '/swagger.json'),
   controllers: path.join(__dirname, './controllers'),
-  useStubs: process.env.NODE_ENV === 'development' // Conditionally turn on stubs (mock mode)
+  useStubs: process.env.NODE_ENV === 'development' 
 };
 
-//Problema de cors 
+//CORS
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");

@@ -9,5 +9,6 @@ const catalogo= Schema({
     categoria:String,
     descripción:String,
     imagen:String,
+    cantidad:Number
    })
 module.exports = mongoose.model('catalogo', catalogo)

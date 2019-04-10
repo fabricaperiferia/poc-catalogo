@@ -1,14 +1,14 @@
-
 swagger: "2.0"
 info:
-  description: "Proyecto base para el poc de grupo aval. Se encuentra swagger de catá\
-    logo"
+  description: "Proyecto base para el poc de grupo aval. Se encuentra swagger de catálogo"
   version: "1.0.0"
   title: "Poc catálogo"
 host: "localhost:8080"
+
 tags:
 - name: "Catalogo"
   description: "Manejo del catálogo del usuario"
+
 schemes:
 - "http"
 paths:
@@ -16,23 +16,26 @@ paths:
     get:
       tags:
       - "Catalogo"
-      summary: "Listar catálogo de la aplicación"
+      summary: "Listar catálogo por filtro"
+      description: "Retorna los respectivos valores, con el filtro adicional"
       operationId: "catalogueGET"
-      consumes:
-      - "application/json"
       produces:
+      - "application/xml"
       - "application/json"
-      parameters: []
       responses:
-        401:
-          description: "Error al procesar la petición"
-      x-swagger-router-controller: "Catalogo"
+        200:
+          description: "successful operation"
+      security:
+      - api_key: []
+    x-swagger-router-controller: "Catalogo"
+          
+  
   /catalogue/{filter}:
     get:
       tags:
       - "Catalogo"
       summary: "Listar catálogo por filtro"
-      description: "Returns a single pet"
+      description: "Retorna los respectivos valores, con el filtro adicional"
       operationId: "getCatalogueByFilter"
       produces:
       - "application/xml"
@@ -50,7 +53,26 @@ paths:
           description: "Proceso invalido"
       security:
       - api_key: []
+    x-swagger-router-controller: "Catalogo"
+    
+  /catalogue/change:
+    post:
+      tags:
+      - "Catalogo"
+      summary: "Cambia los valores del stock"
+      description: "Rest que cambia los valores respectivos del stock"
+      operationId: "postChange"
+      produces:
+      - "application/xml"
+      - "application/json"
+   
+      responses:
+        200:
+          description: "successful operation"
+      security:
+      - api_key: []
       x-swagger-router-controller: "Catalogo"
+
 securityDefinitions:
   petstore_auth:
     type: "oauth2"
@@ -63,4 +85,3 @@ securityDefinitions:
     type: "apiKey"
     name: "api_key"
     in: "header"
-definitions: {}
