@@ -17,3 +17,6 @@ it('Se ejecuta el servicio de catalogo por filtro y valida cuando el filtro lleg
   done();
 
 });
+/*it('Se ejecuta el servicio buscando que falle para pruebas', function (done) {
+  
+});*/
