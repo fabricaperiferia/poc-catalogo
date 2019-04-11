@@ -15,6 +15,7 @@
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
     "js-yaml": "^3.13.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.4.20",
     "node-jose": "^1.1.3",
     "supertest": "^4.0.2",
