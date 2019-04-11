@@ -2,6 +2,7 @@
 
 var catalogo = require('../models/catalogue');
 var jose = require('node-jose');
+const mongoose = require('mongoose');
 
 
 /** 
@@ -43,8 +44,15 @@ module.exports.getCatalogueByFilter = function getCatalogueByFilter(req, res, ne
  @description Lista catálogo de la aplicación según el respectivo filtro
  **/
 module.exports.postChange = function postChange(req, res, next) {
-  console.log(req)
-     res.status(200).send({
-      message:"No se encuentra parametros para este filtro",
-});
+  let catalogue = req.swagger.params['productos'].value
+  catalogue.map(value => {
+    value.cantidad = value.cantidad - value.cantidadVendido
+    delete value.cantidadVendido
+    let id = mongoose.Types.ObjectId(value._id)
+    catalogo.findOneAndUpdate({ _id: id }, value, (err, res) => {
+    })
+  })
+  res.status(200).send({
+    message: "No se encuentra parametros para este filtro",
+  });
 }

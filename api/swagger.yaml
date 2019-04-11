@@ -65,7 +65,12 @@ paths:
       produces:
       - "application/xml"
       - "application/json"
-   
+      parameters:
+      - name: "productos"
+        in: "formData"
+        description: "Valor por el cual se realizara el respectivo filtro"
+        required: true
+        type: "string"
       responses:
         200:
           description: "successful operation"
